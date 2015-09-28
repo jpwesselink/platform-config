@@ -27,7 +27,34 @@ var platforms = platformConfig({
 var current = platforms.current();
 console.log(current);
 
-``` -->
+```
+
+In `targets` are the following files:
+
+```js
+// ./examples/easy/targets/development.js
+
+'use strict';
+
+var config = {
+  description: 'BY THE POWER OF DEVELOPMENT'
+};
+
+module.exports = config;
+
+```
+```js
+// ./examples/easy/targets/production.js
+
+'use strict';
+
+var config = {
+  description: 'BY THE POWER OF PRODUCTION'
+};
+
+module.exports = config;
+
+```
 
 ```bash
 $ node examples/easy
