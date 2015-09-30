@@ -8,7 +8,7 @@ var negate = require('lodash.negate');
 var isObject = require('lodash.isobject');
 var isUndefined = require('lodash.isundefined');
 var merge = require('lodash.merge');
-var requireDir = require('require-dir');
+var bulk = require('bulk-require');
 var resolverRevolver = require('resolver-revolver');
 var util = require('util');
 var zipObject = require('lodash.zipobject');
@@ -45,7 +45,8 @@ module.exports = function (options) {
     options.targets));
 
   // Grab those modules
-  var targets = requireDir(options.targets);
+
+  var targets = bulk(options.targets, ['**/*.js']);
 
   // And give feedback on which ones we have found.
   log(util.format('Found %s: %s',
