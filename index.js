@@ -15,6 +15,8 @@ var zipObject = require('lodash.zipobject');
 
 module.exports = function (options) {
   // patch our console
+  var currentNodeEnv;
+
   var defaults = {
     console: zipObject(['log', 'info', 'warn', 'error'].map(function (level) {
       return [level, function () {}];
@@ -53,6 +55,7 @@ module.exports = function (options) {
 
   // suckage, refactor this dude
   var platforms = {
+    nodeEnv: nodeEnv,
     one: one,
     current: current,
     all: all,
@@ -67,8 +70,16 @@ module.exports = function (options) {
     return config;
   }
 
+  function nodeEnv() {
+    if (!currentNodeEnv) {
+      currentNodeEnv = validateNodeEnv();
+    }
+
+    return currentNodeEnv;
+  }
+
   function current() {
-    var fromNodeEnv = validateNodeEnv();
+    var fromNodeEnv = nodeEnv();
     var target = targets[fromNodeEnv];
 
     return options.transformResult(target, fromNodeEnv);

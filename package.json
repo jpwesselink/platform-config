@@ -1,6 +1,6 @@
 {
   "name": "platform-config",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Fetch and validate platform configurations more easily",
   "main": "index.js",
   "repository": {
